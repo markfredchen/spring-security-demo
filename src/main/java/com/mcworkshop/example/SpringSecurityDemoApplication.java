@@ -1,5 +1,6 @@
 package com.mcworkshop.example;
 
+import com.mcworkshop.example.util.SecurityUtils;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -21,6 +22,11 @@ class DemoRestController {
 	@GetMapping("/hello")
 	@PreAuthorize("hasRole('ADMIN')")
 	public String greeting() {
-		return "Hello World";
+		return "Hello " + SecurityUtils.getCurrentUser();
+	}
+
+	@GetMapping("/public/api")
+	public String publicAPI() {
+		return "this is public API";
 	}
 }
