@@ -2,6 +2,7 @@ package com.mcworkshop.example;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,6 +19,7 @@ public class SpringSecurityDemoApplication {
 @RequestMapping("/api")
 class DemoRestController {
 	@GetMapping("/hello")
+	@PreAuthorize("hasRole('ADMIN')")
 	public String greeting() {
 		return "Hello World";
 	}
